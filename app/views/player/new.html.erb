@@ -1,0 +1,51 @@
+<h3>New player form</h3>
+
+<%= form_for @player,url: player_signup_path do |f| %>
+	<table>
+	<% if @player.errors.any? %>
+		<tr>
+		    <th colspan="2">
+		    	<div id="error_explanation">
+		    	    <h2><%= pluralize(@player.errors.count, "error") %> prohibited this article from being saved:</h2>
+		    	 
+		    	    <ul>
+		    	    <% @player.errors.full_messages.each do |msg| %>
+		    	      <li><%= msg %></li>
+		    	    <% end %>
+		    	    </ul>
+		    	  </div>
+		    </th>
+		  </tr>
+	<% end %>
+	<% if flash[:created_player] %>
+		<tr>
+		    <th colspan="2">
+		    	<%= flash[:created_player] %>
+		    </th>
+		  </tr>
+	<% end %>
+	  <tr>
+	    <th>Campos</th>
+	    <th>Valores</th>
+	  </tr>
+	  <tr>
+	    <td>Name: </td>
+	    <td><%= f.text_field :name %><br /></td>
+	  </tr>
+	  <tr>
+	    <td>Email :</td>
+	    <td><%= f.text_field :email %><br /></td>
+	  </tr>
+	  <tr>
+	    <td>UserName :</td>
+	    <td><%= f.text_field :username %><br /></td>
+	  </tr><tr>
+	    <td>Points :</td>
+	    <td><%= f.number_field :points %><br /></td>
+	  </tr><tr>
+	    <td>Active?    : </td>
+	    <td><%= f.check_box :active %><br /></td>
+	  </tr>
+	</table>
+ 	<%= f.submit %>
+<% end %>
